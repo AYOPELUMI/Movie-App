@@ -11,6 +11,12 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: '#1E293B',
+        secondary: '#64748B',
+
+      },
+      animation: {
+        pulse: 'pulse 2s infinite',
       },
     },
   },
