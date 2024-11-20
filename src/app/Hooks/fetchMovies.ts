@@ -56,6 +56,7 @@ const useAllMovies = () => {
             const nextPage = allPages.length * 3 + 1;
             return nextPage <= 500 ? nextPage : undefined; // TMDB limits to 500 pages
         },
+        keepPreviousData: true
     });
 };
 
@@ -75,3 +76,29 @@ const fetchMovieDetails = async (id: number) => {
 export const movieDetails = (id: number) => useQuery(['movieDetails', id], () => fetchMovieDetails(id), {
     enabled: !!id,
 });
+
+
+
+// Fetch function
+const fetchMovieCast = async (movieId: number) => {
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits`, {
+        params: { api_key: API_KEY },
+    });
+    return response.data.cast.map((cast: any) => ({
+        id: cast.id,
+        name: cast.name,
+        character: cast.character,
+        profile: cast.profile_path
+            ? `https://image.tmdb.org/t/p/w500${cast.profile_path}`
+            : null,
+    }));
+};
+
+// useQuery Hook
+export const useMovieCast = (movieId: number) => {
+    return useQuery(["movieCast", movieId], () => fetchMovieCast(movieId), {
+        enabled: !!movieId, // Ensures query only runs if movieId is provided
+        staleTime: 1000 * 60 * 5, // Cache data for 5 minutes
+        refetchOnWindowFocus: false, // Prevents refetching on window focus
+    });
+};

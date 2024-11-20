@@ -1,16 +1,10 @@
-// pages/favorites.tsx
+"use client";
 import { useEffect, useState } from 'react';
 import { Movie } from '../types/MovieType';
+import { useFavoritesStore } from '@/Store/FavouriteStore';
 
 export default function FavoritesPage() {
-    const [favorites, setFavorites] = useState<Movie[]>([]);
-
-    useEffect(() => {
-        const savedFavorites = localStorage.getItem('favorites');
-        if (savedFavorites) {
-            setFavorites(JSON.parse(savedFavorites));
-        }
-    }, []);
+    const { favorites } = useFavoritesStore()
 
     return (
         <div className="container mx-auto p-4">
