@@ -1,7 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
 
-// @ts-ignore
 import { debounce } from 'lodash'
 import { motion } from 'framer-motion';
 import MovieCard from './components/MovieCard';
