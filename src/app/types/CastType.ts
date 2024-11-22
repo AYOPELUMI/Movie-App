@@ -11,4 +11,7 @@ export type Cast = {
     "character": string,
     "credit_id": string,
     profile: string
-} 
+
+}
+
+

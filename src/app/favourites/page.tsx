@@ -2,6 +2,7 @@
 import { useFavoritesStore } from '@/Store/FavouriteStore';
 import MovieCard from '../components/MovieCard';
 import { useRouter } from 'next/navigation';
+
 import { MdArrowBack } from 'react-icons/md';
 
 export default function FavoritesPage() {
@@ -17,6 +18,7 @@ export default function FavoritesPage() {
                 <title>Favorites </title>
                 <link rel="icon" href="/favicon.ico"></link>
             </head>
+
             <body>
                 <div className="flex flex-col min-h-screen w-screen bg-gradient-to-br from-[#658292] via-[#6d7076] via-[#9f9c8d] to-[#9f9d8f]">
                     <MdArrowBack className='size-6 text-white relative z-50 m-4' onClick={handleGoBack} />
