@@ -14,6 +14,7 @@ import { MdOutlineFavorite, MdSearch } from 'react-icons/md';
 import useGenres from './Hooks/fetchGenres';
 
 export default function MovieFilter() {
+
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
   const [allMovies, setAllMovies] = useState<Movie[]>([]);
