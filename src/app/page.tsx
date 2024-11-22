@@ -5,7 +5,7 @@ import { debounce } from 'lodash'
 import { motion } from 'framer-motion';
 import MovieCard from './components/MovieCard';
 import { Movie } from './types/MovieType';
-import useAllMovies, { useMovies } from './Hooks/fetchMovies';
+import useAllMovies from './Hooks/fetchMovies';
 import { Genre } from './types/GenresType';
 import MovieCardSkeleton from './components/MovieCardSkeleton';
 import { useInView } from 'react-intersection-observer';

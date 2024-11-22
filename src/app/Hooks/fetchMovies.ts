@@ -1,35 +1,24 @@
 import axios from 'axios';
 import { useInfiniteQuery, useQuery } from 'react-query';
 
-type Movie = {
-    title: string;
-    year: number;
-    rating: number;
-    category: string;
-};
 
 const TMDB_API_URL = 'https://api.themoviedb.org/3';
 
 export async function fetchMovies(endpoint: string) {
-    try {
-        const response = await axios.get(`${TMDB_API_URL}${endpoint}`, {
-            params: {
-                api_key: process.env.NEXT_PUBLIC_TMDB_API_KEY,
+    const response = await axios.get(`${TMDB_API_URL}${endpoint}`, {
+        params: {
+            api_key: process.env.NEXT_PUBLIC_TMDB_API_KEY,
 
-            },
-            headers: {
-                accept: 'application/json',
-                Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_ACCESS_TOKEN}`
-            }
-        });
-        return response.data;
-    } catch (error) {
-        throw new Error('Failed to fetch');
-    }
+        },
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_API_ACCESS_TOKEN}`
+        }
+    });
+    return response.data;
+
 }
 
-// Example usage with react-query
-export const useMovies = (endpoint: string) => useQuery(['movies', endpoint], () => fetchMovies(endpoint));
 
 
 const BASE_URL = 'https://api.themoviedb.org/3/movie/popular';
@@ -71,7 +60,7 @@ const fetchMovieDetails = async (id: number) => {
 };
 
 
-export const movieDetails = (id: number) => useQuery(['movieDetails', id], () => fetchMovieDetails(id), {
+export const useMovieDetails = (id: number) => useQuery(['movieDetails', id], () => fetchMovieDetails(id), {
     enabled: !!id,
 });
 
@@ -82,7 +71,7 @@ const fetchMovieCast = async (movieId: number) => {
     const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits`, {
         params: { api_key: process.env.NEXT_PUBLIC_TMDB_API_KEY },
     });
-    return response.data.cast.map((cast: any) => ({
+    return response.data.cast.map((cast: { id: number; name: string; character: string; profile_path: string; }) => ({
         id: cast.id,
         name: cast.name,
         character: cast.character,
@@ -93,7 +82,7 @@ const fetchMovieCast = async (movieId: number) => {
 };
 
 // useQuery Hook
-export const useMovieCast = (movieId: number) => {
+export const UseMovieCast = (movieId: number) => {
     return useQuery(["movieCast", movieId], () => fetchMovieCast(movieId), {
         enabled: !!movieId, // Ensures query only runs if movieId is provided
         staleTime: 1000 * 60 * 5, // Cache data for 5 minutes

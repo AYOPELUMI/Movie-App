@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { movieDetails, useMovieCast } from '@/app/Hooks/fetchMovies';
+import { useMovieDetails, UseMovieCast } from '@/app/Hooks/fetchMovies';
 import { Cast } from '@/app/types/CastType';
 import { MdArrowBack } from 'react-icons/md';
 import FullScreenSpinner from '@/app/components/Spinner';
@@ -10,9 +10,9 @@ import { MovieDetails } from '@/app/types/MovieDetailType';
 
 export default function MovieDetailsPage() {
     const params = useParams();
-    const { data } = movieDetails(Number(params.id));
+    const { data } = useMovieDetails(Number(params.id));
     const [movie, setMovie] = useState<MovieDetails | null>(null);
-    const { data: cast, isLoading, error } = useMovieCast(Number(params.id));
+    const { data: cast, isLoading } = UseMovieCast(Number(params.id));
     const router = useRouter();
 
     useEffect(() => {
