@@ -2,14 +2,6 @@ import { useQuery } from 'react-query';
 
 import axios from 'axios';
 
-const axiosInstance = axios.create({
-    baseURL: 'https://api.themoviedb.org/3',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-});
-
-
 const fetchGenres = async () => {
     const response = await axios.get('https://api.themoviedb.org/3/genre/movie/list', {
         params: {

@@ -15,7 +15,6 @@ const MovieCard = ({ movie }: Props) => {
     const { addToFavorites, removeFromFavorites, favorites } = useFavoritesStore()
 
     const handleCardClick = () => {
-        const query = `?title=${movie.title}&picture=${movie.poster_path}`;
         router.push(`/movies/${movie.id}`); // Navigates to the dynamic page
     };
 

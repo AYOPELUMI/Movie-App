@@ -12,10 +12,7 @@ import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
 import { MdOutlineFavorite, MdSearch } from 'react-icons/md';
 import useGenres from './Hooks/fetchGenres';
-interface Props {
-  movies: Movie[],
-  genreData: Genre[]
-}
+
 export default function MovieFilter() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>([]);
@@ -24,7 +21,7 @@ export default function MovieFilter() {
   const { data: genreData } = useGenres();
   const [reorderedGenres, setReorderedGenres] = useState<Genre[]>(genreData || []);
   const { ref, inView } = useInView();
-  const { data: movies, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } = useAllMovies();
+  const { data: movies, fetchNextPage, hasNextPage, isLoading } = useAllMovies();
   useEffect(() => {
     if (inView && hasNextPage) {
       fetchNextPage();
