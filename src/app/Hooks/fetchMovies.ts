@@ -32,16 +32,14 @@ export async function fetchMovies(endpoint: string) {
 export const useMovies = (endpoint: string) => useQuery(['movies', endpoint], () => fetchMovies(endpoint));
 
 
-
-const API_KEY = "a39709319c82d7d872f1742866bd1404";
 const BASE_URL = 'https://api.themoviedb.org/3/movie/popular';
 
-const fetchAllMovies = async ({ pageParam = 1 }) => {
+export const fetchAllMovies = async ({ pageParam = 1 }) => {
     const pageNumbers = [pageParam, pageParam + 1, pageParam + 2];
 
     const results = await Promise.all(
         pageNumbers.map(page =>
-            axios.get(`${BASE_URL}?api_key=${API_KEY}&page=${page}`).then(res => res.data.results)
+            axios.get(`${BASE_URL}?api_key=${process.env.NEXT_PUBLIC_TMDB_API_KEY}&page=${page}`).then(res => res.data.results)
         )
     );
 
@@ -66,7 +64,7 @@ export default useAllMovies;
 const fetchMovieDetails = async (id: number) => {
     const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}`, {
         params: {
-            api_key: "a39709319c82d7d872f1742866bd1404"
+            api_key: process.env.NEXT_PUBLIC_TMDB_API_KEY
         }
     });
     return response.data;
@@ -82,7 +80,7 @@ export const movieDetails = (id: number) => useQuery(['movieDetails', id], () =>
 // Fetch function
 const fetchMovieCast = async (movieId: number) => {
     const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits`, {
-        params: { api_key: API_KEY },
+        params: { api_key: process.env.NEXT_PUBLIC_TMDB_API_KEY },
     });
     return response.data.cast.map((cast: any) => ({
         id: cast.id,

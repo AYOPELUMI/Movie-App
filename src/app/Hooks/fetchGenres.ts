@@ -13,7 +13,7 @@ const axiosInstance = axios.create({
 const fetchGenres = async () => {
     const response = await axios.get('https://api.themoviedb.org/3/genre/movie/list', {
         params: {
-            api_key: "a39709319c82d7d872f1742866bd1404",
+            api_key: process.env.NEXT_PUBLIC_TMDB_API_KEYN,
             language: 'en',
         },
         headers: {

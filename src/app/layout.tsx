@@ -25,12 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >    <QueryClientProvider client={queryClient}>
-          {children}
-        </QueryClientProvider>
-      </body>
+      <QueryClientProvider client={queryClient}>
+        {children}
+      </QueryClientProvider>
     </html>
   );
 }
