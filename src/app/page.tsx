@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 
 // @ts-ignore
-import _ from 'lodash';
+import { debounce } from 'lodash'
 import { motion } from 'framer-motion';
 import MovieCard from './components/MovieCard';
 import { Movie } from './types/MovieType';
@@ -12,7 +12,6 @@ import MovieCardSkeleton from './components/MovieCardSkeleton';
 import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
 import { MdOutlineFavorite, MdSearch } from 'react-icons/md';
-import { title } from 'process';
 import useGenres from './Hooks/fetchGenres';
 interface Props {
   movies: Movie[],
@@ -83,7 +82,7 @@ export default function MovieFilter() {
 
   // Debounced search and filter
   useEffect(() => {
-    const debouncedFilter = _.debounce(() => {
+    const debouncedFilter = debounce(() => {
       setFilteredMovies(filterMovies());
     }, 300);
 
@@ -119,6 +118,7 @@ export default function MovieFilter() {
                 type="text"
                 className="w-10 sm:w-40 md:w-40 h-full bg-transparent placeholder:text-white text-white outline-none text-lg px-1 md:px-4 transition-all duration-300 focus:w-full focus:px-4"
                 placeholder="Search..."
+                onChange={(event) => setSearchTerm(event.target.value)}
               />
               <MdSearch className="flex-shrink-0 text-2xl text-white cursor-pointer transition-transform duration-300" />
             </div>

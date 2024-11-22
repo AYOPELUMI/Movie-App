@@ -1,6 +1,4 @@
 "use client";
-import { useEffect, useState } from 'react';
-import { Movie } from '../types/MovieType';
 import { useFavoritesStore } from '@/Store/FavouriteStore';
 import MovieCard from '../components/MovieCard';
 import { useRouter } from 'next/navigation';

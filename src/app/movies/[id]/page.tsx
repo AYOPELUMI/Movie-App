@@ -1,63 +1,12 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { motion } from 'framer-motion'; // Import for animations
+import { motion } from 'framer-motion';
 import { movieDetails, useMovieCast } from '@/app/Hooks/fetchMovies';
 import { Cast } from '@/app/types/CastType';
 import { MdArrowBack } from 'react-icons/md';
 import FullScreenSpinner from '@/app/components/Spinner';
-
-
-interface MovieDetails {
-    "adult": boolean,
-    "backdrop_path": string,
-    "belongs_to_collection": null,
-    "budget": number,
-    "genres":
-    {
-        "id": number,
-        "name": string
-    }[]
-    ,
-    "homepage": string,
-    "id": number,
-    "imdb_id": string,
-    "origin_country": string[],
-    "original_language": string,
-    "original_title": string,
-    "overview": string,
-    "popularity": number,
-    "poster_path": string,
-    "production_companies":
-    {
-        "id": number,
-        "logo_path": string,
-        "name": string,
-        "origin_country": string
-    }[]
-    ,
-    "production_countries":
-    {
-        "iso_3166_1": string,
-        "name": string
-    }[]
-    ,
-    "release_date": string,
-    "revenue": number,
-    "runtime": number,
-    "spoken_languages":
-    {
-        "english_name": string,
-        "iso_639_1": string,
-        "name": string
-    }[],
-    "status": string,
-    "tagline": string,
-    "title": string,
-    "video": boolean,
-    "vote_average": number,
-    "vote_count": number
-}
+import { MovieDetails } from '@/app/types/MovieDetailType';
 
 export default function MovieDetailsPage() {
     const params = useParams();
