@@ -31,7 +31,7 @@ export default function FavoritesPage() {
                                 ))}
                             </div>
                         ) : (
-                            <p>No favorite movies added yet.</p>
+                            <p className='p-8 flex items-center justify-center w-full h-full'>No favorite movies added yet.</p>
                         )
                     }
                 </div >

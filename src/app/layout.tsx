@@ -3,7 +3,7 @@
 import "./globals.css";
 import queryClient from "@/lib/react-query-client";
 import { QueryClientProvider } from "react-query";
-import { Geist_Mono, Inter, DM_Sans } from 'next/font/google'
+import { Geist_Mono, DM_Sans } from 'next/font/google'
 
 
 const mona = DM_Sans({ subsets: ['latin'], variable: "--font-mona-sans", })
