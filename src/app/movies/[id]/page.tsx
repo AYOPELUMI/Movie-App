@@ -34,7 +34,7 @@ export default function MovieDetailsPage() {
             <body>
                 {isLoading && (<FullScreenSpinner />)}
                 {!isLoading && (<div
-                    className="relative w-screen min-h-screen bg-no-repeat bg-cover overflow-hidden md:p-4"
+                    className="relative w-screen min-h-screen md:h-screen bg-no-repeat bg-cover md:overflow-hidden md:p-4"
                     style={{
                         backgroundImage: `url(https://image.tmdb.org/t/p/original${movie?.backdrop_path})`,
                     }}
@@ -43,12 +43,12 @@ export default function MovieDetailsPage() {
                     <div className="absolute inset-0 bg-black bg-opacity-70"></div>
 
                     {/* Main Content */}
-                    <MdArrowBack className='size-6 text-white relative z-50 m-4' onClick={handleGoBack} />
+                    <MdArrowBack className='size-6 text-white absolute top-1 z-50 m-4' onClick={handleGoBack} />
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: 'easeOut' }}
-                        className="relative z-10 md:p-8 w-full flex flex-col md:flex-row items-center md:items-start gap-8"
+                        className="relative z-10 md:p-8 w-full flex flex-col md:flex-row items-center md:items-start gap-8 md:h-screen  md:overflow-hidden "
                     >
                         {/* Poster */}
                         <motion.img
@@ -61,7 +61,7 @@ export default function MovieDetailsPage() {
                         />
 
                         {/* Details */}
-                        <div className="text-white">
+                        <div className="text-white flex flex-col h-screen overflow-scroll">
                             <motion.h1
                                 className="text-4xl font-bold px-4"
                                 initial={{ opacity: 0 }}
@@ -101,16 +101,19 @@ export default function MovieDetailsPage() {
 
                             {movie && (<div className='flex flex-col gap-5 mt-5'>
                                 <h2 className='text-3xl font-medium text-white pl-4'>Movie Cast</h2>
-                                <ul className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 flex-wrap gap-2 gap-y-4 pb-20'>
+                                <ul className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 flex-wrap gap-2 gap-y-10 pb-20'>
                                     {cast?.map((actor: Cast) => (
                                         <li key={actor.id}>
-                                            <div>
-                                                <img
-                                                    src={actor.profile || "https://via.placeholder.com/100x150"}
-                                                    alt={actor.name}
-                                                    className=' size-full object-contain rounded-md max-h-[150px]'
-                                                />
-                                                <p className='text-center'>{actor.name}</p>
+                                            <div className="flex flex-col items-center">
+                                                <div className=" h-[150px] bg-transparent rounded-md flex items-center justify-center">
+                                                    <img
+                                                        src={actor.profile || "https://via.placeholder.com/100x150"}
+                                                        alt={actor.name}
+                                                        className='w-full h-full object-cover rounded-md'
+
+                                                    />
+                                                </div>
+                                                <p className='text-center mt-2'>{actor.name}</p>
                                                 <p className='text-center'>as {actor.character}</p>
                                             </div>
                                         </li>
@@ -125,7 +128,7 @@ export default function MovieDetailsPage() {
                         initial={{ y: 50, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.8, delay: 1 }}
-                        className="absolute bottom-0 w-full p-4 bg-black bg-opacity-80 text-white text-center"
+                        className="absolute bottom-0 w-full p-4 bg-black text-white text-center z-40"
                     >
                         <p>© 2024 Movie Database. All Rights Reserved.</p>
                     </motion.footer>

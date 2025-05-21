@@ -108,7 +108,7 @@ export default function MovieFilter() {
       <body>
         <div className="flex flex-col h-screen w-screen bg-gradient-to-br from-[#658292] via-[#6d7076] via-[#9f9c8d] to-[#9f9d8f]">
           <header className="flex justify-between items-center gap-2 md:gap-4 mb-4 p-4 pt-10">
-            <h1 className=" text-lg md:text-2xl lg:text-3xl font-bold shrink-0 text-white">Movie App</h1>
+            <h1 className=" text-lg md:text-2xl lg:text-3xl font-bold shrink-0 text-white font-sans">Movie App</h1>
 
             <div className="w-fit flex items-center border-b-2 border-white relative transition-all duration-300 ease-in-out focus-within:max-w-full">
               <input
@@ -133,8 +133,8 @@ export default function MovieFilter() {
             className='overflow-hidden  flex flex-col gap-4 h-full w-full'
 
           >
-            <div className="h-20 w-full">
-              <nav className="flex space-x-4 mb-4 overflow-x-scroll h-20 px-4 w-full">
+            <div className="h-16 w-full">
+              <nav className="flex space-x-4 mb-4 overflow-x-scroll h-10 px-4 w-full">
                 {reorderedGenres?.map((genre: Genre) => (
                   <button
                     key={genre.id}
@@ -148,8 +148,8 @@ export default function MovieFilter() {
             </div>
 
 
-            <h2 className="text-2xl font-semibold mb-2 px-4">{selectedGenres ? genreData?.find((genre: Genre) => genre.id == selectedGenres).name : "All"} Movies</h2>
-            <div className="grid  md:grid-cols-3 lg:grid-cols-5  gap-4 backdrop-blur-xl p-4 overflow-y-scroll h-ful w-fulll">
+            <h2 className="text-2xl font-semibold  px-4">{selectedGenres ? genreData?.find((genre: Genre) => genre.id == selectedGenres).name : "All"} Movies</h2>
+            <div className="grid  md:grid-cols-3 lg:grid-cols-5  gap-4 backdrop-blur-xl p-4 py-2 overflow-y-scroll h-ful w-fulll">
               {isLoading ?
                 Array(6) // Render 6 skeletons
                   .fill(0)

@@ -15,6 +15,10 @@ export default {
         secondary: '#64748B',
 
       },
+      fontFamily: {
+        geist: ["var(--font-geist-mono)"],
+        sans: ["var(--font-mono-sans)"],
+      },
       animation: {
         pulse: 'pulse 2s infinite',
       },

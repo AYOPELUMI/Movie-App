@@ -42,11 +42,11 @@ const MovieCard = ({ movie }: Props) => {
             <div className="relative">
                 <img
                     src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    className="rounded-t-2xl  object-cover object-center md:object-bottom max-h-[300px] w-full"
+                    className="rounded-t-2xl  object-cover object-center md:object-bottom max-h-[300px] size-full w-full"
                 />
             </div>
             <div className=" p-2 md:p-4 pb-6 flex flex-col gap-1.5 justify-start text-white ">
-                <div className='flex justify-between gap-3 md:gap-5'> <h3 className="text-lg font-bold break-all text-ellipsis md: text-wrap max-w-1/2">{movie.title}</h3>{favorites.some((favmovie) => movie.id == favmovie.id) ? <MdFavorite onClick={handleFavorite} className='size-6 shrink-0' /> : <MdFavoriteBorder onClick={handleFavorite} className='size-6 shrink-0' />}</div>
+                <div className='flex justify-between gap-3 md:gap-5'> <h3 className="text-lg font-bold break-all text-ellipsis line-clamp-2  md: text-wrap max-w-1/2">{movie.title}</h3>{favorites.some((favmovie) => movie.id == favmovie.id) ? <MdFavorite onClick={handleFavorite} className='size-6 shrink-0' /> : <MdFavoriteBorder onClick={handleFavorite} className='size-6 shrink-0' />}</div>
                 <div className="text-sm text-white flex flex-col gap-1.5 items-start flex-wrap"><p>Release Date:</p> {movie.release_date} • <p> Rating: &#9733; {movie.vote_average}</p></div>
             </div>
         </motion.div>
